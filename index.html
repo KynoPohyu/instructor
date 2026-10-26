@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1,user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Инструктор">
+<meta name="theme-color" content="#11161a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="vendor/leaflet.css">
+<link rel="stylesheet" href="style.css">
+<title>Автоинструктор</title>
+</head>
+<body>
+<div id="map"></div>
+
+<button id="btnLocate" class="fab" aria-label="Показать, где я">
+  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+</button>
+
+<!-- Панель манёвра во время поездки -->
+<section id="drivePanel" class="drive-top hidden">
+  <div id="manIcon" class="man-icon"></div>
+  <div class="man-body">
+    <div id="manDist" class="man-dist"></div>
+    <div id="manName" class="man-name"></div>
+  </div>
+</section>
+<div id="subtitle" class="subtitle hidden"></div>
+
+<section id="driveBottom" class="drive-bottom hidden">
+  <div class="speed"><span id="spd">0</span><small>км/ч</small></div>
+  <div id="lim" class="limit">60</div>
+  <div class="remain"><div id="rem"></div><div id="remT" class="muted"></div></div>
+  <div class="drive-btns">
+    <button id="btnMute" class="btn icon" aria-label="Голос">🔊</button>
+    <button id="btnStop" class="btn danger">Стоп</button>
+  </div>
+</section>
+
+<!-- Нижняя панель -->
+<section id="sheet" class="sheet">
+  <div id="homeView">
+    <div class="search">
+      <input id="q" type="search" placeholder="Куда едем? Например: Петровская 50" autocomplete="off" enterkeyhint="search">
+    </div>
+    <ul id="results" class="list"></ul>
+    <div id="hint" class="hint">Или нажми на карту, чтобы выбрать точку.</div>
+    <div class="grid">
+      <button id="btnFree"><span>🚗</span>Просто покататься</button>
+      <button id="btnCheck"><span>✅</span>Перед поездкой</button>
+      <button id="btnHistory"><span>📈</span>Мои поездки</button>
+      <button id="btnMapData"><span>🗺️</span>Карта города</button>
+      <button id="btnSettings"><span>⚙️</span>Настройки</button>
+      <button id="btnHelp"><span>❓</span>Как пользоваться</button>
+    </div>
+    <div id="mapStatus" class="status"></div>
+  </div>
+
+  <div id="previewView" class="hidden">
+    <div id="pvTitle" class="pv-title"></div>
+    <div id="pvInfo" class="pv-info"></div>
+    <label class="toggle"><input type="checkbox" id="pvCalm"><span>Спокойный маршрут — меньше больших дорог</span></label>
+    <div class="row">
+      <button id="btnGo" class="btn primary big">Поехали</button>
+      <button id="btnDemo" class="btn">Демо</button>
+    </div>
+    <div class="row">
+      <button id="btnFav" class="btn">★ Запомнить место</button>
+      <button id="btnCancel" class="btn">Отмена</button>
+    </div>
+  </div>
+</section>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div id="modalBody"></div>
+    <button id="modalClose" class="btn wide">Закрыть</button>
+  </div>
+</div>
+
+<div id="toast" class="toast hidden"></div>
+
+<script src="vendor/leaflet.js"></script>
+<script src="core.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
